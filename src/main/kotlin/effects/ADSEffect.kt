@@ -15,14 +15,9 @@ class ADSEffect(
             val time = index.toDouble() / sampleRate
 
             val multiplier = when {
-                attackEnd > 0 && time < attackEnd ->
-                    time / attackEnd
-
-                time < decayEnd ->
-                    1.0 - ((time - attackEnd) / (decayEnd - attackEnd)) * (1 - sustain)
-
-                else ->
-                    sustain
+                attackEnd > 0 && time < attackEnd -> time / attackEnd
+                time < decayEnd -> 1.0 - ((time - attackEnd) / (decayEnd - attackEnd)) * (1 - sustain)
+                else -> sustain
             }
 
             sample * multiplier.coerceIn(0.0, 1.0)

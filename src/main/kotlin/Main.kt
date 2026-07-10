@@ -5,13 +5,10 @@ import parser.SongParser
 
 fun main() {
     try {
-        val filename = "src/main/resources/zelda_theme.txt"
-
+        val filename = "src/main/resources/sarias_song.txt"
         val song = SongParser().parse(filename)
-
         val synthesizer = Synthesizer()
         val mixer = Mixer()
-
         val channelSamples = mutableListOf<DoubleArray>()
 
         for(channel in song.channels) {
@@ -26,23 +23,11 @@ fun main() {
         }
 
         val finalSamples = mixer.mix(channelSamples)
-
         val player = AudioPlayer()
 
-        player.play(
-            finalSamples,
-            song.header.sampleRate
-        )
+        player.play(finalSamples, song.header.sampleRate)
+        println("Final samples: ${finalSamples.size}")
+        println(finalSamples.take(10))
 
-        println(
-            "Final samples: ${finalSamples.size}"
-        )
-
-        println(
-            finalSamples.take(10)
-        )
-
-    } catch(e: Exception) {
-        println("Error: ${e.message}")
-    }
+    } catch(e: Exception) { println("Error: ${e.message}") }
 }

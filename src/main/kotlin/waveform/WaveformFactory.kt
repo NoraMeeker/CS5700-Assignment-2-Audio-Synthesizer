@@ -7,9 +7,7 @@ class WaveformFactory {
             "square" -> SquareWave()
             "saw" -> SawWave()
             "whitenoise" -> WhiteNoise()
-            else -> throw IllegalArgumentException(
-                "Unknown waveform: $name"
-            )
+            else -> throw IllegalArgumentException("Unknown waveform: $name")
         }
     }
 }

@@ -7,9 +7,7 @@ import model.SongHeader
 import java.io.File
 
 class SongParser {
-
     fun parse(filename: String): Song {
-
         val lines = try {
             File(filename).readLines()
         } catch (e: Exception) {
@@ -49,7 +47,6 @@ class SongParser {
         val channels = mutableListOf<Channel>()
 
         for (i in 1 until lines.size) {
-
             val line = lines[i].trim()
 
             // Skip empty lines
@@ -85,9 +82,7 @@ class SongParser {
             val notes = mutableListOf<Note>()
 
             for (j in 1 until sections.size) {
-
-                val measure = sections[j]
-                    .trim()
+                val measure = sections[j].trim()
 
                 if (measure.isEmpty()) {
                     continue
@@ -104,7 +99,6 @@ class SongParser {
                 var k = 0
 
                 while (k < tokens.size) {
-
                     val pitch = tokens[k]
 
                     val duration = try {

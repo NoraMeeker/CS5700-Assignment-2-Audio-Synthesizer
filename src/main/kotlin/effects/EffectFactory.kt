@@ -11,14 +11,12 @@ class EffectFactory {
             val parts = effectString.split("$")
 
             when(parts[0].lowercase()) {
-
                 "vol" -> {
                     effect = VolumeEffect(
                         effect,
                         parts[1].toDouble()
                     )
                 }
-
                 "ads" -> {
                     effect = ADSEffect(
                         effect,
@@ -28,9 +26,7 @@ class EffectFactory {
                         sampleRate
                     )
                 }
-
                 "tanh" -> { effect = TanhEffect(effect, parts[1].toDouble()) }
-
                 "clip" -> { effect = ClipEffect(effect, parts[1].toDouble()) }
 
                 else -> {

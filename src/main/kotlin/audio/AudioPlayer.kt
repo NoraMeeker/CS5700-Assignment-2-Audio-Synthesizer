@@ -18,8 +18,7 @@ class AudioPlayer {
                 false
             )
 
-        val line =
-            AudioSystem.getSourceDataLine(format)
+        val line = AudioSystem.getSourceDataLine(format)
 
         line.open(format)
         line.start()
@@ -27,15 +26,9 @@ class AudioPlayer {
         val buffer = ByteArray(samples.size * 2)
 
         for(i in samples.indices) {
-            val value =
-                (samples[i] * Short.MAX_VALUE)
-                    .toInt()
-
-            buffer[i * 2] =
-                value.toByte()
-
-            buffer[i * 2 + 1] =
-                (value shr 8).toByte()
+            val value = (samples[i] * Short.MAX_VALUE).toInt()
+            buffer[i * 2] = value.toByte()
+            buffer[i * 2 + 1] = (value shr 8).toByte()
         }
 
         line.write(
